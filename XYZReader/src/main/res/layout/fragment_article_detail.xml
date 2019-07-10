@@ -1,0 +1,108 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    tools:ignore="Overdraw">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_detail"
+        style="@style/ToolbarStyle"
+        android:layout_marginTop="@dimen/detail_toolbar_margin_top"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_collapseMode="pin" />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout_detail"
+        style="@style/AppBarLayoutStyle"
+        android:layout_height="@dimen/app_bar_layout_height"
+        android:paddingTop="?android:attr/actionBarSize"
+        app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            style="@style/CollapsingToolbarLayoutStyle"
+            app:contentScrim="@color/colorPrimary"
+            app:expandedTitleMarginStart="@dimen/detail_collapsing_toolbar_layout_margin_start"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <FrameLayout
+                android:id="@+id/photo_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax">
+
+                <ImageView
+                    android:id="@+id/photo"
+                    style="@style/DetailImageViewStyle"
+                    android:contentDescription="@string/photo_content_description"
+                    app:layout_collapseMode="parallax"
+                    tools:src="@mipmap/ic_launcher" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/photo_background_protection"
+                    app:layout_collapseMode="parallax" />
+
+                <LinearLayout
+                    style="@style/MetaBarStyle"
+                    app:layout_collapseMode="parallax">
+
+                    <TextView
+                        android:id="@+id/article_title"
+                        style="?android:attr/textAppearanceMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingMultiplier="0.9"
+                        android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
+                        android:textColor="@color/colorTextTitle"
+                        android:textSize="@dimen/detail_title_text_size"
+                        android:textStyle="bold"
+                        tools:text="title" />
+
+                    <TextView
+                        android:id="@+id/article_byline"
+                        style="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextByline"
+                        tools:text="date, author" />
+                </LinearLayout>
+            </FrameLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <com.example.xyzreader.ui.ObservableScrollView
+        android:id="@+id/scrollview"
+        style="@style/ScrollViewStyle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:id="@+id/article_body"
+                style="@style/ArticleBodyTextViewStyle"
+                android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier"
+                tools:text="article body" />
+        </LinearLayout>
+    </com.example.xyzreader.ui.ObservableScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/share_fab"
+        style="@style/FloatingActionButtonStyle"
+        android:backgroundTint="@color/colorAccent"
+        android:contentDescription="@string/action_share"
+        android:src="@drawable/ic_share"
+        android:tint="@color/colorTextTitle"
+        app:elevation="@dimen/fab_elevation"
+        app:fabSize="normal"
+        app:layout_anchor="@id/app_bar_layout_detail"
+        app:layout_anchorGravity="bottom|end"
+        app:pressedTranslationZ="@dimen/fab_press_translation_z" />
+</android.support.design.widget.CoordinatorLayout>
